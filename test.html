@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Fullscreen</title>
+    <style>
+        /* Style untuk gambar */
+        .clickable-img {
+            cursor: pointer;
+            max-width: 300px;
+            transition: transform 0.3s;
+        }
+        
+        .clickable-img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Style overlay fullscreen */
+        .fullscreen-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .fullscreen-img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <img src="img/gedung-amn.jpeg" alt="Example Image" class="clickable-img" onclick="openFullscreen(this)">
+    <img src="img/gedung-ma.jpg" alt="Example Image" class="clickable-img" onclick="openFullscreen(this)">
+    <img src="img/gedung-sd.jpg" alt="Example Image" class="clickable-img" onclick="openFullscreen(this)">
+    <img src="img/gedung-smp.jpg" alt="Example Image" class="clickable-img" onclick="openFullscreen(this)">
+    
+    <!-- Overlay Fullscreen -->
+    <div class="fullscreen-overlay" onclick="closeFullscreen()">
+        <span class="close-btn">&times;</span>
+        <img src="" class="fullscreen-img">
+    </div>
+
+    <script>
+        function openFullscreen(img) {
+            const overlay = document.querySelector('.fullscreen-overlay');
+            const fullscreenImg = overlay.querySelector('.fullscreen-img');
+            
+            fullscreenImg.src = img.src;
+            overlay.style.display = 'flex';
+        }
+
+        function closeFullscreen() {
+            document.querySelector('.fullscreen-overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
